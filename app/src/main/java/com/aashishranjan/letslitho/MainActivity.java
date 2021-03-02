@@ -20,11 +20,13 @@ public class MainActivity extends AppCompatActivity {
 
         final ComponentContext c = new ComponentContext(this);
 
-        final Component textComponent = Text.create(c)
-            .text("Hello Litho")
-            .textSizeDip(50)
-            .build();
+//        final Component textComponent = Text.create(c)
+//            .text("Hello Litho")
+//            .textSizeDip(50)
+//            .build();
 
-        setContentView(LithoView.create(c, textComponent));
+        final Component listItemComponent = ListItem.create(c).build();
+
+        setContentView(LithoView.create(c, listItemComponent));
     }
 }
