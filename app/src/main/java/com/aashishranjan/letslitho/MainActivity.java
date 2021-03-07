@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //        setContentView(LithoView.create(c, recyclerCollectionComponent));
 
+        //using mount spec to create colorDrawable
         final ColorComponent colorComponent = ColorComponent.create(c)
             .colorName("#3F51B5")
             .build();
