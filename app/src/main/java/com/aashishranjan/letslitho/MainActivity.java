@@ -3,6 +3,7 @@ package com.aashishranjan.letslitho;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
@@ -37,16 +38,24 @@ public class MainActivity extends AppCompatActivity {
 
 
         //create recycler view
-        final Section listSection = ListSection.create(
-            new SectionContext(c)
-        ).build();
+//        final Section listSection = ListSection.create(
+//            new SectionContext(c)
+//        ).build();
+//
+//        final RecyclerCollectionComponent recyclerCollectionComponent =
+//            RecyclerCollectionComponent.create(c)
+//                .disablePTR(true)
+//                .section(listSection)
+//                .build();
+//
+//        setContentView(LithoView.create(c, recyclerCollectionComponent));
 
-        final RecyclerCollectionComponent recyclerCollectionComponent =
-            RecyclerCollectionComponent.create(c)
-                .disablePTR(true)
-                .section(listSection)
-                .build();
+        final ColorComponent colorComponent = ColorComponent.create(c)
+            .colorName("#3F51B5")
+            .build();
 
-        setContentView(LithoView.create(c, recyclerCollectionComponent));
+        setContentView(LithoView.create(c, colorComponent));
+
+
     }
 }
