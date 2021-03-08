@@ -6,8 +6,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieDrawable;
@@ -19,6 +24,8 @@ import com.facebook.litho.sections.SectionContext;
 import com.facebook.litho.sections.widget.RecyclerCollectionComponent;
 import com.facebook.litho.widget.Text;
 import com.facebook.soloader.SoLoader;
+
+import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -77,12 +84,51 @@ public class MainActivity extends AppCompatActivity {
 //
 //        lottieLayout.addView(lav);
 
-        final CustomLottieAnimationView clavComponent = CustomLottieAnimationView.create(c)
-            .lottieResource(R.raw.lottie_segmented_top_up)
-            .widthDip(100)
-            .heightDip(100)
-            .build();
+//        //Lottie animation using mountSpec
+//        final CustomLottieAnimationView clavComponent = CustomLottieAnimationView.create(c)
+//            .lottieResource(R.raw.lottie_segmented_top_up)
+//            .widthDip(100)
+//            .heightDip(100)
+//            .build();
+//
+//        setContentView(LithoView.create(c, clavComponent));
 
-        setContentView(LithoView.create(c, clavComponent));
+        ConstraintLayout switcherLayout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_main, null);
+        setContentView(switcherLayout);
+
+        ViewSwitcher viewSwitcher = new ViewSwitcher(this);
+//        viewSwitcher.setLayoutParams(new LinearLayout.LayoutParams(
+//            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+//        ));
+
+        ImageView imageView = new ImageView(this);
+        imageView.setImageResource(R.drawable.jfy_image);
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//        imageView.setBackgroundColor(Color.LTGRAY);
+
+        float factor = getResources().getDisplayMetrics().density;
+        float widthInPx = factor * 100f;
+        float heightInPx = factor * 20f;
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams((int) widthInPx, (int) heightInPx);
+
+        imageView.setLayoutParams(layoutParams);
+
+        TextView textView = new TextView(this);
+        textView.setText("Use SWIGGYIT");
+        textView.setTextSize(12f);
+
+        viewSwitcher.addView(textView);
+        viewSwitcher.addView(imageView);
+
+        Animation animationIn = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
+        Animation animationOut = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
+
+        viewSwitcher.setInAnimation(animationIn);
+        viewSwitcher.setOutAnimation(animationOut);
+
+        switcherLayout.addView(viewSwitcher);
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new NextSwitchedViewTask(viewSwitcher), 0, 1000);
     }
 }
