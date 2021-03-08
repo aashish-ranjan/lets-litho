@@ -53,4 +53,5 @@ dependencies {
     compileOnly 'com.facebook.litho:litho-sections-annotations:0.40.0'
 
     annotationProcessor 'com.facebook.litho:litho-sections-processor:0.40.0'
+    implementation 'com.airbnb.android:lottie:3.6.1'
 }
