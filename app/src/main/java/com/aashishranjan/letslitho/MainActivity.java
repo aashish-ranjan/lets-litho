@@ -93,42 +93,50 @@ public class MainActivity extends AppCompatActivity {
 //
 //        setContentView(LithoView.create(c, clavComponent));
 
-        ConstraintLayout switcherLayout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_main, null);
-        setContentView(switcherLayout);
+//        ConstraintLayout switcherLayout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_main, null);
+//        setContentView(switcherLayout);
+//
+//        ViewSwitcher viewSwitcher = new ViewSwitcher(this);
+////        viewSwitcher.setLayoutParams(new LinearLayout.LayoutParams(
+////            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+////        ));
+//
+//        ImageView imageView = new ImageView(this);
+//        imageView.setImageResource(R.drawable.jfy_image);
+//        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+////        imageView.setBackgroundColor(Color.LTGRAY);
+//
+//        float factor = getResources().getDisplayMetrics().density;
+//        float widthInPx = factor * 100f;
+//        float heightInPx = factor * 20f;
+//        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams((int) widthInPx, (int) heightInPx);
+//
+//        imageView.setLayoutParams(layoutParams);
+//
+//        TextView textView = new TextView(this);
+//        textView.setText("Use SWIGGYIT");
+//        textView.setTextSize(12f);
+//
+//        viewSwitcher.addView(textView);
+//        viewSwitcher.addView(imageView);
+//
+//        Animation animationIn = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
+//        Animation animationOut = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
+//
+//        viewSwitcher.setInAnimation(animationIn);
+//        viewSwitcher.setOutAnimation(animationOut);
+//
+//        switcherLayout.addView(viewSwitcher);
+//
+//        Timer timer = new Timer();
+//        timer.scheduleAtFixedRate(new NextSwitchedViewTask(viewSwitcher), 0, 1000);
 
-        ViewSwitcher viewSwitcher = new ViewSwitcher(this);
-//        viewSwitcher.setLayoutParams(new LinearLayout.LayoutParams(
-//            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
-//        ));
+        final TextImageViewSwitcher textImageViewSwitcherComponent = TextImageViewSwitcher.create(c)
+            .textValue("Use DEALS60")
+            .imageResId(R.drawable.jfy_image)
+            .timer(new Timer())
+            .build();
 
-        ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.drawable.jfy_image);
-        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//        imageView.setBackgroundColor(Color.LTGRAY);
-
-        float factor = getResources().getDisplayMetrics().density;
-        float widthInPx = factor * 100f;
-        float heightInPx = factor * 20f;
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams((int) widthInPx, (int) heightInPx);
-
-        imageView.setLayoutParams(layoutParams);
-
-        TextView textView = new TextView(this);
-        textView.setText("Use SWIGGYIT");
-        textView.setTextSize(12f);
-
-        viewSwitcher.addView(textView);
-        viewSwitcher.addView(imageView);
-
-        Animation animationIn = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
-        Animation animationOut = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
-
-        viewSwitcher.setInAnimation(animationIn);
-        viewSwitcher.setOutAnimation(animationOut);
-
-        switcherLayout.addView(viewSwitcher);
-
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new NextSwitchedViewTask(viewSwitcher), 0, 1000);
+        setContentView(LithoView.create(c, textImageViewSwitcherComponent));
     }
 }
